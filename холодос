@@ -1,0 +1,65 @@
+import datetime
+from decimal import Decimal
+
+def add():
+    pass
+    time_year = int(input('Введите срок годности(год): '))
+    time_month = int(input('Введите срок годности(месяц): '))
+    time_day = int(input('Введите срок годности(день): '))
+    weight = input('Введите вес(kg): ' )
+    name = input('Введите имя продукта: ')
+    time_dict = dict([('expiration_date',datetime.date(time_year,time_month,time_day))])
+    weight_dict = dict([('amount',Decimal(weight))])
+    '''final_dict = dict([(name, str(list(time_dict,weight_dict)))])'''
+    goods[name] = [(time_dict,weight_dict)]
+
+    
+def find():
+    name = input('Ввведите имя: ')
+    for i in goods.keys():
+        for j in i.split():
+            if name == j:
+                return goods.get(i)
+            else:
+                return 'Такого товара нету'
+
+
+def amount():
+    name = input('Введите точное название товара: ')
+    list_for_output = []
+    if name in goods.keys():
+        for i in goods[name]:
+            list_for_output.append(f'{i['amount']} кг')
+    return list_for_output
+
+
+goods = {
+    'Пельмени Универсальные': [
+        # Первая партия продукта 'Пельмени Универсальные':
+        {'amount': Decimal('0.5'), 'expiration_date': datetime.date(2023, 7, 15)},
+        # Вторая партия продукта 'Пельмени Универсальные':
+        {'amount': Decimal('2'), 'expiration_date': datetime.date(2023, 8, 1)},
+    ],
+    'Вода': [
+        {'amount': Decimal('1.5'), 'expiration_date': None}
+    ],
+}
+a = 7
+def main():
+    print('Выбери что ты хочешь сделать')
+    print('Напиши 1 чтобы выполнить поиск')
+    print('Напиши 2 чтобы добавить товар')
+    print('Напиши 3 чтобы посмотреть сколько товара осталось')
+    print('Напиши 0 чтобы выйти')
+    a = int(input())
+    if a == 1:
+        find()
+    if a == 2:
+        add()
+    if a == 3:
+        amount()
+    if a == 0:
+        return 'Вы вышли'
+main()
+        
+
